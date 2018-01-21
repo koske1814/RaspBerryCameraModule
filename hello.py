@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request  # 追加
-
+from os.path import join,relpath
+from glob import glob
 app = Flask(__name__)
 
 
@@ -9,10 +10,18 @@ def hello():
     # return name
     return render_template('hello.html', title='flask test', name=name) #変更
 
-@app.route('/photo',methods=['GET'])
+@app.route('/photo',methods=['POST'])
 def photo():
-    val = request.args.get("msg","Not defined")
-    return 'Hello World' + val
+    name="Huga"
+    title="photo_test"
+    path = "./static/img"
+    image_names = [relpath(x,path) for x in glob(join(path,'*.png'))]
+    my_list = []
+    for image in image_names:
+        my_dic = {}
+        my_dic['image_name'] = 'static/img/' + image
+        my_list.append(my_dic)
+    return render_template('photo.html',title=title,name=name,message=my_list)
 
 # おまじない
 if __name__ == "__main__":
