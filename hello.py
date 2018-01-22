@@ -10,7 +10,7 @@ def hello():
     # return name
     return render_template('hello.html', title='flask test', name=name) #変更
 
-@app.route('/photo',methods=['POST'])
+@app.route('/photo')
 def photo():
     name="Huga"
     title="photo_test"
@@ -19,7 +19,7 @@ def photo():
     my_list = []
     for image in image_names:
         my_dic = {}
-        my_dic['image_name'] = 'static/img/' + image
+        my_dic['image_name'] = "static/img/" + image
         my_list.append(my_dic)
     return render_template('photo.html',title=title,name=name,message=my_list)
 

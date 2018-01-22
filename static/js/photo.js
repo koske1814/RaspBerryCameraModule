@@ -28,8 +28,6 @@ function photo(){
     };
     xhr.open('POST',"/photo",false);
     xhr.setRequestHeader( 'Content-Type', 'application/x-www-form-urlencoded' );
-    console.log('alert');
     xhr.send();
     xhr.abort();
-    location.href='photo.html';
 }
